@@ -4,6 +4,7 @@ import random
 import matplotlib.pyplot as plt
 x = []
 y = []
+outfile = open("output.txt","w")
 with open("input.txt") as f:
     for line in f:
         x.append(float(line.split(" ")[0]))
@@ -40,7 +41,8 @@ for i in range(len(coeffs)):
     s = s + str(coeffs[i]) + "\t"
 s = s + "\n"
 print "Coefficients of Polynomial\n",s
-
+outfile.write("Coefficients of Polynomial\n")
+outfile.write(s)
 def get_prediction(coeffs, x):
     s = 0
     for i in range(len(coeffs)):
@@ -58,7 +60,8 @@ for i in range(len(x)):
 R = sqrt(1 - (S/So))
 
 print "Coefficient of Determination",R
-
+outfile.write("\nCoefficient of Determination\n")
+outfile.write(str(R))
 t = [random.random()*(max(x) - min(x)) + min(x) for i in range(1000)]
 ty = [get_prediction(coeffs,t[i]) for i in range(1000)]
 
