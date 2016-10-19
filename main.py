@@ -10,6 +10,7 @@ with open("input.txt") as f:
 
 N = len(x)
 
+print "Enter the Degree of the Polynomial to be fit\n(It should be less than number of Data points available)\n"
 n = int(input())
 
 if n - 1 > N:
@@ -62,7 +63,7 @@ print "Coefficient of Determination",R
 
 fig = plt.figure()
 ax = fig.add_subplot(111)
-ax.set_title("Polynomial Fit vs True Values")
+ax.set_title("Polynomial Fit (Degree "+str(n)+")"+" vs True Values")
 ax.set_ylabel("Y")
 ax.set_xlabel("X")
 ax.scatter(x,y, s=30, c='b', marker="s", label='True Value')
