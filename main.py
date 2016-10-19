@@ -1,5 +1,6 @@
 import numpy as np
 from math import sqrt
+import random
 import matplotlib.pyplot as plt
 x = []
 y = []
@@ -56,18 +57,19 @@ for i in range(len(x)):
 
 R = sqrt(1 - (S/So))
 
-# for i in range(len(x)):
-#     print y[i],"\t",y_pred[i]
-
 print "Coefficient of Determination",R
+
+t = [random.random()*(max(x) - min(x)) + min(x) for i in range(1000)]
+ty = [get_prediction(coeffs,t[i]) for i in range(1000)]
 
 fig = plt.figure()
 ax = fig.add_subplot(111)
 ax.set_title("Polynomial Fit (Degree "+str(n)+")"+" vs True Values")
 ax.set_ylabel("Y")
 ax.set_xlabel("X")
-ax.scatter(x,y, s=30, c='b', marker="s", label='True Value')
-ax.scatter(x,y_pred, s=30, c='r', marker="o", label='Estimated Value')
+ax.scatter(t,ty, s=30, c='b', marker="o", label='Estimated Value')
+ax.scatter(x,y, s=30, c='r', marker="s", label='True Value')
+# ax.scatter(x,y_pred, s=30, c='r', marker="o", label='Estimated Value')
 plt.legend(loc='upper left')
 plt.show()
 fig.savefig("Plot.png")
