@@ -1,6 +1,6 @@
 import numpy as np
 from math import sqrt
-
+import matplotlib.pyplot as plt
 x = []
 y = []
 with open("input.txt") as f:
@@ -59,3 +59,14 @@ R = sqrt(1 - (S/So))
 #     print y[i],"\t",y_pred[i]
 
 print "Coefficient of Determination",R
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.set_title("Polynomial Fit vs True Values")
+ax.set_ylabel("Y")
+ax.set_xlabel("X")
+ax.scatter(x,y, s=30, c='b', marker="s", label='True Value')
+ax.scatter(x,y_pred, s=30, c='r', marker="o", label='Estimated Value')
+plt.legend(loc='upper left')
+plt.show()
+fig.savefig("Plot.png")
