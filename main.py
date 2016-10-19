@@ -19,6 +19,9 @@ if n - 1 > N:
     print "N=",N,"<","n - 1=",n-1,"\nNot enough data points to generate ",n,"th degree polynomial.\n"
     exit()
 
+outfile.write("Degree of Polynomial\n")
+outfile.write(str(n))
+
 def series_sum(x,t):
     s = 0
     for xi in x:
@@ -41,7 +44,7 @@ for i in range(len(coeffs)):
     s = s + str(coeffs[i]) + "\t"
 s = s + "\n"
 print "Coefficients of Polynomial\n",s
-outfile.write("Coefficients of Polynomial\n")
+outfile.write("\n\nCoefficients of Polynomial\n")
 outfile.write(s)
 def get_prediction(coeffs, x):
     s = 0
@@ -57,7 +60,7 @@ for i in range(len(x)):
     S = S + (y[i] - y_pred[i])**2
     So = So + (y[i] - np.array(y).mean())**2
 
-R = sqrt(1 - (S/So))
+R = 1 - (S/So)
 
 print "Coefficient of Determination",R
 outfile.write("\nCoefficient of Determination\n")
