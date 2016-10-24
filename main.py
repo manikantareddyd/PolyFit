@@ -10,6 +10,11 @@ with open("input.txt") as f:
         x.append(float(line.split(" ")[0]))
         y.append(float(line.split(" ")[1]))
 
+yx = zip(y,x)
+yx.sort()
+x = [a for b,a in yx]
+y = [b for b,a in yx]
+
 N = len(x)
 
 print "Enter the Degree of the Polynomial to be fit\n(It should be less than number of Data points available)\n"
@@ -65,15 +70,16 @@ R = 1 - (S/So)
 print "Coefficient of Determination",R
 outfile.write("\nCoefficient of Determination\n")
 outfile.write(str(R))
-t = [random.random()*(max(x) - min(x)) + min(x) for i in range(1000)]
-ty = [get_prediction(coeffs,t[i]) for i in range(1000)]
+t = [random.random()*(max(x) - min(x)) + min(x) for i in range(2*len(x))]
+t.sort()
+ty = [get_prediction(coeffs,t[i]) for i in range(len(t))]
 
 fig = plt.figure()
 ax = fig.add_subplot(111)
 ax.set_title("Polynomial Fit (Degree "+str(n)+")"+" vs True Values")
 ax.set_ylabel("Y")
 ax.set_xlabel("X")
-ax.scatter(t,ty, s=30, c='b', marker="o", label='Estimated Value')
+ax.plot(t,ty, "-", label='Estimated Value')
 ax.scatter(x,y, s=30, c='r', marker="s", label='True Value')
 plt.legend(loc='upper left')
 plt.show()
