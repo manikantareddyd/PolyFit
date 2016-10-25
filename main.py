@@ -10,10 +10,13 @@ with open("input.txt") as f:
         x.append(float(line.split(" ")[0]))
         y.append(float(line.split(" ")[1]))
 
-yx = zip(y,x)
-yx.sort()
-x = [a for b,a in yx]
-y = [b for b,a in yx]
+
+
+xy = zip(x,y)
+xy.sort()
+y = [a for b,a in xy]
+x = [b for b,a in xy]
+
 
 N = len(x)
 
